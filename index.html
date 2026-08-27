@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -22,10 +23,6 @@ body{
     color:#245873;
     overflow-x:hidden;
 }
-
-/* =========================
-   FONDO
-========================= */
 
 body::before{
     content:"";
@@ -82,10 +79,6 @@ body::before{
     }
 }
 
-/* =========================
-   PORTADA
-========================= */
-
 .screen{
     min-height:100vh;
     display:flex;
@@ -103,6 +96,7 @@ body::before{
     border:1px solid rgba(255,255,255,.8);
     box-shadow:0 20px 70px rgba(44,135,180,.25);
     backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 }
 
 .small{
@@ -139,6 +133,10 @@ input{
     color:#245873;
 }
 
+input:focus{
+    box-shadow:0 0 20px rgba(255,255,255,.9);
+}
+
 button{
     border:none;
     border-radius:30px;
@@ -154,6 +152,7 @@ button{
 
 button:hover{
     transform:translateY(-3px) scale(1.03);
+    box-shadow:0 12px 30px rgba(43,139,183,.35);
 }
 
 #error{
@@ -161,8 +160,13 @@ button:hover{
     min-height:20px;
     color:#b85878;
 }
+
+.hidden{
+    display:none!important;
+}
+
 /* =========================
-   REPRODUCTOR DE MÚSICA
+   MUSICA
 ========================= */
 
 .music-player{
@@ -170,22 +174,16 @@ button:hover{
     right:22px;
     bottom:22px;
     z-index:50;
-
     display:flex;
     align-items:center;
     gap:12px;
-
     padding:14px 18px;
-
     background:rgba(255,255,255,.72);
     border:1px solid rgba(255,255,255,.9);
     border-radius:25px;
-
     backdrop-filter:blur(15px);
-
-    box-shadow:
-        0 10px 35px rgba(45,135,180,.2);
-
+    -webkit-backdrop-filter:blur(15px);
+    box-shadow:0 10px 35px rgba(45,135,180,.2);
     animation:musicAppear 1s ease;
 }
 
@@ -219,35 +217,15 @@ button:hover{
         opacity:0;
         transform:translateY(20px);
     }
-
     to{
         opacity:1;
         transform:translateY(0);
     }
 }
 
-@media(max-width:650px){
-
-    .music-player{
-        left:15px;
-        right:15px;
-        bottom:15px;
-        justify-content:center;
-        flex-wrap:wrap;
-    }
-
-    .music-player audio{
-        width:100%;
-    }
-}
-
 /* =========================
-   CONTENIDO
+   PAGINA
 ========================= */
-
-.hidden{
-    display:none!important;
-}
 
 #mainPage{
     animation:appear 1.2s ease;
@@ -275,6 +253,7 @@ nav{
     padding:14px;
     background:rgba(220,247,255,.8);
     backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
     border-bottom:1px solid rgba(255,255,255,.7);
 }
 
@@ -285,6 +264,10 @@ nav button{
     background:rgba(255,255,255,.55);
     color:#31799c;
     box-shadow:none;
+}
+
+nav button:hover{
+    background:white;
 }
 
 section{
@@ -466,7 +449,54 @@ section{
 }
 
 /* =========================
-   CARTA
+   CARTA BLOQUEADA
+========================= */
+
+.letter-lock{
+    max-width:800px;
+    margin:auto;
+    padding:55px 35px;
+    text-align:center;
+    background:rgba(255,255,255,.55);
+    border-radius:30px;
+    border:1px solid white;
+    box-shadow:0 15px 45px rgba(51,143,182,.15);
+}
+
+.letter-lock-icon{
+    font-size:65px;
+    margin-bottom:20px;
+    animation:lockPulse 2s infinite ease-in-out;
+}
+
+@keyframes lockPulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+.letter-lock h3{
+    font-size:28px;
+    color:#287fa8;
+    margin-bottom:15px;
+}
+
+.letter-lock p{
+    font-size:18px;
+    line-height:1.8;
+}
+
+#unlockMessage{
+    margin-top:20px;
+    font-size:15px;
+    color:#56839a;
+}
+
+/* =========================
+   CARTA DESBLOQUEADA
 ========================= */
 
 .letter{
@@ -474,16 +504,59 @@ section{
     margin:auto;
     padding:45px;
     text-align:left;
-    background:rgba(255,255,255,.65);
+    background:rgba(255,255,255,.7);
     border-radius:30px;
     border:1px solid white;
-    box-shadow:0 15px 45px rgba(51,143,182,.15);
+    box-shadow:0 15px 45px rgba(51,143,182,.18);
+    animation:letterOpen 1.5s ease;
+}
+
+@keyframes letterOpen{
+    from{
+        opacity:0;
+        transform:scale(.92) translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
 }
 
 .letter p{
     font-size:18px;
     line-height:2;
     margin-bottom:20px;
+}
+
+.letter-date{
+    text-align:center;
+    color:#56839a;
+    font-size:15px;
+    margin-bottom:30px;
+}
+
+/* =========================
+   EFECTO ESPECIAL 28
+========================= */
+
+.special-day{
+    animation:specialGlow 2s infinite ease-in-out;
+}
+
+@keyframes specialGlow{
+    0%,100%{
+        box-shadow:0 15px 45px rgba(51,143,182,.18);
+    }
+    50%{
+        box-shadow:
+            0 15px 60px rgba(51,143,182,.35),
+            0 0 35px rgba(255,255,255,.8);
+    }
+}
+
+.celebration{
+    font-size:38px;
+    margin-bottom:15px;
 }
 
 /* =========================
@@ -558,16 +631,45 @@ footer{
         padding:30px 22px;
     }
 
+    .letter-lock{
+        padding:40px 22px;
+    }
+
     section{
         padding:70px 18px;
     }
+
+    .music-player{
+        left:15px;
+        right:15px;
+        bottom:15px;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .music-player audio{
+        width:100%;
+    }
+
+    nav{
+        padding:10px 8px;
+    }
+
+    nav button{
+        font-size:13px;
+        padding:8px 12px;
+    }
 }
 </style>
+
 </head>
 
 <body>
 
-<!-- ESTRELLAS -->
+<!-- =========================
+     ESTRELLAS
+========================= -->
+
 <div class="stars">
     <span class="star" style="top:8%;left:12%"></span>
     <span class="star" style="top:17%;left:80%"></span>
@@ -579,54 +681,60 @@ footer{
     <span class="star" style="top:23%;left:58%"></span>
 </div>
 
-
 <!-- =========================
      LOGIN
 ========================= -->
 
 <div id="loginScreen" class="screen">
 
-    <div class="card">
+```
+<div class="card">
 
-        <div class="small">
-            Hay un lugar que hice solo para ti... ✨
-        </div>
-
-        <h1>Para mi Gordita</h1>
-
-        <div class="subtitle">
-            Pero primero tendrás que descubrir cómo entrar.
-            <br><br>
-            <i>6 días sin ti y mira lo que provocaste...</i> 😭💙
-        </div>
-
-        <div class="lock">🔐</div>
-
-        <input
-            id="password"
-            type="password"
-            placeholder="Nuestra contraseña..."
-        >
-
-        <br>
-
-        <button onclick="unlock()">
-            Entrar, mi gordita ♡
-        </button>
-
-        <div id="error"></div>
-
+    <div class="small">
+        Hay un lugar que hice solo para ti... ✨
     </div>
 
-</div>
+    <h1>Para mi Gordita</h1>
 
+    <div class="subtitle">
+        Pero primero tendrás que descubrir cómo entrar.
+        <br><br>
+        <i>6 días sin ti y mira lo que provocaste...</i> 😭💙
+    </div>
+
+    <div class="lock">🔐</div>
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Nuestra contraseña..."
+        onkeydown="if(event.key==='Enter') unlock()"
+    >
+
+    <br>
+
+    <button onclick="unlock()">
+        Entrar, mi gordita ♡
+    </button>
+
+    <div id="error"></div>
+
+</div>
+```
+
+</div>
 
 <!-- =========================
      PAGINA PRINCIPAL
 ========================= -->
 
 <div id="mainPage" class="hidden">
+
+```
+<!-- MUSICA -->
+
 <div class="music-player">
+
     <div class="music-icon">🎵</div>
 
     <div class="music-info">
@@ -635,32 +743,66 @@ footer{
     </div>
 
     <audio id="ourSong" controls>
-        <source src="musica/Reik - Pero Te Conocí (Letra_Lyrics).mp3" type="audio/mpeg">
+        <source
+            src="musica/Reik - Pero Te Conocí (Letra_Lyrics).mp3"
+            type="audio/mpeg"
+        >
         Tu navegador no puede reproducir este audio.
     </audio>
+
 </div>
+
+
+<!-- NAVEGACION -->
+
 <nav>
 
-    <button onclick="goTo('inicio')">Inicio</button>
-    <button onclick="goTo('historia')">Nuestra historia</button>
-    <button onclick="goTo('amor')">Lo que amo de ti</button>
-    <button onclick="goTo('talentos')">Tu mundo</button>
-    <button onclick="goTo('nosotros')">Nosotros</button>
-    <button onclick="goTo('carta')">Carta</button>
-    <button onclick="goTo('contador')">365 días</button>
+    <button onclick="goTo('inicio')">
+        Inicio
+    </button>
+
+    <button onclick="goTo('historia')">
+        Nuestra historia
+    </button>
+
+    <button onclick="goTo('amor')">
+        Lo que amo de ti
+    </button>
+
+    <button onclick="goTo('talentos')">
+        Tu mundo
+    </button>
+
+    <button onclick="goTo('nosotros')">
+        Nosotros
+    </button>
+
+    <button onclick="goTo('carta')">
+        Carta 💌
+    </button>
+
+    <button onclick="goTo('contador')">
+        365 días
+    </button>
 
 </nav>
 
 
-<!-- INICIO -->
+<!-- =========================
+     INICIO
+========================= -->
 
 <section id="inicio" class="hero">
 
     <div class="section-content">
 
-        <div style="font-size:45px">♡</div>
+        <div style="font-size:45px">
+            ♡
+        </div>
 
-        <h2>Para mi Gordita</h2>
+        <h2>
+            Para mi Gordita
+        </h2>
 
         <p>
             De tu niña. 💙
@@ -679,7 +821,9 @@ footer{
 </section>
 
 
-<!-- HISTORIA -->
+<!-- =========================
+     HISTORIA
+========================= -->
 
 <section id="historia">
 
@@ -701,7 +845,9 @@ footer{
 
                 <div class="event-box">
 
-                    <h3>04 · 02 · 2025 📱</h3>
+                    <h3>
+                        04 · 02 · 2025 📱
+                    </h3>
 
                     <p>
                         El primer mensaje.
@@ -717,13 +863,18 @@ footer{
 
                 <div class="event-box">
 
-                    <h3>28 · 02 · 2025 💃</h3>
+                    <h3>
+                        28 · 02 · 2025 💃
+                    </h3>
 
                     <p>
                         La primera vez que nos vimos en una gala de comparsas.
                         Y lo primero que me dijiste fue:
                         <br><br>
-                        <strong>“Tú sí eres chiquita.”</strong> 😭
+                        <strong>
+                            “Tú sí eres chiquita.”
+                        </strong>
+                        😭
                     </p>
 
                 </div>
@@ -735,7 +886,9 @@ footer{
 
                 <div class="event-box">
 
-                    <h3>28 · 08 · 2025 💙</h3>
+                    <h3>
+                        28 · 08 · 2025 💙
+                    </h3>
 
                     <p>
                         Tal vez no te conocí ese día,
@@ -752,12 +905,15 @@ footer{
 
                 <div class="event-box">
 
-                    <h3>28 · 08 · 2026 ✨</h3>
+                    <h3>
+                        28 · 08 · 2026 ✨
+                    </h3>
 
                     <p>
                         ¿Adivinaaaaa?
                         <br>
-                        No te voy a decir nadita. 👀
+                        Ahora sí llegó el día.
+                        👀💙
                     </p>
 
                 </div>
@@ -771,7 +927,9 @@ footer{
 </section>
 
 
-<!-- LO QUE AMO -->
+<!-- =========================
+     LO QUE AMO
+========================= -->
 
 <section id="amor">
 
@@ -784,56 +942,98 @@ footer{
         <div class="cards">
 
             <div class="love-card">
-                <div class="icon">🫶</div>
-                <h3>Tu empatía</h3>
+
+                <div class="icon">
+                    🫶
+                </div>
+
+                <h3>
+                    Tu empatía
+                </h3>
+
                 <p>
                     La manera en la que puedes entender
                     lo que siento incluso cuando no sé cómo explicarlo.
                 </p>
+
             </div>
 
+
             <div class="love-card">
-                <div class="icon">👂</div>
-                <h3>Cómo escuchas</h3>
+
+                <div class="icon">
+                    👂
+                </div>
+
+                <h3>
+                    Cómo escuchas
+                </h3>
+
                 <p>
                     Gracias por escucharme siempre
                     y hacerme sentir que mis palabras importan.
                 </p>
+
             </div>
 
+
             <div class="love-card">
-                <div class="icon">💙</div>
-                <h3>Tu madurez</h3>
+
+                <div class="icon">
+                    💙
+                </div>
+
+                <h3>
+                    Tu madurez
+                </h3>
+
                 <p>
                     La manera en la que piensas,
                     hablas y afrontas las cosas.
                 </p>
+
             </div>
 
+
             <div class="love-card">
-                <div class="icon">✨</div>
-                <h3>Tu forma de ser</h3>
+
+                <div class="icon">
+                    ✨
+                </div>
+
+                <h3>
+                    Tu forma de ser
+                </h3>
+
                 <p>
                     Tu manera única de ser tú.
                     No cambiaría eso por nada.
                 </p>
+
             </div>
 
+
             <div class="love-card">
-                <div class="icon">🫂</div>
-                <h3>Que me escoges</h3>
+
+                <div class="icon">
+                    🫂
+                </div>
+
+                <h3>
+                    Que me escoges
+                </h3>
+
                 <p>
                     Todos los días me demuestras
                     que me escoges sobre todo lo demás.
                 </p>
+
             </div>
 
         </div>
 
         <div class="quote">
-
             “Gracias por demostrarme que no soy difícil de querer.”
-
         </div>
 
     </div>
@@ -841,7 +1041,9 @@ footer{
 </section>
 
 
-<!-- TALENTOS -->
+<!-- =========================
+     TALENTOS
+========================= -->
 
 <section id="talentos">
 
@@ -882,12 +1084,29 @@ footer{
 
         <div class="talents">
 
-            <div class="talent">⚽ Fútbol</div>
-            <div class="talent">💃 Baile urbano</div>
-            <div class="talent">🎸 Guitarra</div>
-            <div class="talent">🎭 Actuación</div>
-            <div class="talent">🎤 Canto</div>
-            <div class="talent">🎙️ Debate</div>
+            <div class="talent">
+                ⚽ Fútbol
+            </div>
+
+            <div class="talent">
+                💃 Baile urbano
+            </div>
+
+            <div class="talent">
+                🎸 Guitarra
+            </div>
+
+            <div class="talent">
+                🎭 Actuación
+            </div>
+
+            <div class="talent">
+                🎤 Canto
+            </div>
+
+            <div class="talent">
+                🎙️ Debate
+            </div>
 
         </div>
 
@@ -896,7 +1115,9 @@ footer{
 </section>
 
 
-<!-- NOSOTROS -->
+<!-- =========================
+     NOSOTRAS
+========================= -->
 
 <section id="nosotros">
 
@@ -962,7 +1183,9 @@ footer{
 </section>
 
 
-<!-- CARTA -->
+<!-- =========================
+     CARTA DEL 28
+========================= -->
 
 <section id="carta">
 
@@ -972,18 +1195,59 @@ footer{
             Para ti, mi vida 💌
         </h2>
 
-        <div class="letter">
+
+        <!-- ESTA PARTE APARECE ANTES DEL 28 -->
+
+        <div id="lockedLetter" class="letter-lock hidden">
+
+            <div class="letter-lock-icon">
+                🔐
+            </div>
+
+            <h3>
+                Esta carta todavía está cerrada...
+            </h3>
 
             <p>
-                Cosita, simplemente te amo, y de verdad
-                encontraré la manera de verte más seguido,
+                Hay algo aquí que todavía no puedes leer.
+                <br><br>
+                Tendrás que esperar hasta el
+                <strong>28 de agosto de 2026</strong>. 💙
+            </p>
+
+            <div id="unlockMessage">
+                Falta poquito, mi gordita... 🥺
+            </div>
+
+        </div>
+
+
+        <!-- ESTA PARTE APARECE EL 28 -->
+
+        <div id="unlockedLetter" class="letter hidden">
+
+            <div class="celebration">
+                💌✨💙✨💌
+            </div>
+
+            <div class="letter-date">
+                28 de agosto de 2026
+            </div>
+
+            <p>
+                Cosita,
+            </p>
+
+            <p>
+                simplemente te amo.
+                Y de verdad encontraré la manera de verte más seguido,
                 ir a tus partidos y simplemente mostrarte más
                 lo que siento por ti.
             </p>
 
             <p>
-                Tengo unas ganas de verte muy grandes,
-                de verdad te amo.
+                Tengo unas ganas de verte muy grandes.
+                De verdad te amo.
             </p>
 
             <p>
@@ -991,8 +1255,32 @@ footer{
                 pero te amo y mucho.
             </p>
 
-            <p style="text-align:center">
-                💙 Tu niña.
+            <p>
+                Quiero que sepas que, aunque a veces no pueda
+                estar físicamente contigo todo lo que quisiera,
+                siempre estás en un pedacito enorme de mi corazón.
+            </p>
+
+            <p>
+                Gracias por ser tú.
+                Gracias por escogerme.
+                Gracias por dejarme quererte.
+            </p>
+
+            <p>
+                Y si alguna vez dudas de cuánto te amo,
+                vuelve aquí y recuerda que hice todo este lugar
+                solamente para ti.
+            </p>
+
+            <p style="text-align:center;font-size:23px;">
+                Te amo, mi gordita. 💙
+            </p>
+
+            <p style="text-align:center;">
+                Con todo mi amor,
+                <br>
+                <strong>Tu niña. ♡</strong>
             </p>
 
         </div>
@@ -1002,7 +1290,9 @@ footer{
 </section>
 
 
-<!-- CONTADOR -->
+<!-- =========================
+     CONTADOR
+========================= -->
 
 <section id="contador">
 
@@ -1012,7 +1302,7 @@ footer{
             365 días de nuestra historia 💙
         </h2>
 
-        <p class="section-text">
+        <p class="section-text" id="countdownText">
             ¿Adivinaaaaa?
             <br>
             No te diré nadita.
@@ -1081,9 +1371,9 @@ footer{
     </p>
 
 </footer>
+```
 
 </div>
-
 
 <script>
 
@@ -1094,13 +1384,19 @@ footer{
 function unlock(){
 
     const password =
-        document.getElementById("password")
+        document
+        .getElementById("password")
         .value
         .trim()
         .toLowerCase();
 
     const error =
         document.getElementById("error");
+
+    /*
+       Contraseña actual:
+       "teamo"
+    */
 
     if(password === "teamo"){
 
@@ -1113,6 +1409,8 @@ function unlock(){
         .classList.remove("hidden");
 
         createHearts();
+
+        checkLetter();
 
         window.scrollTo({
             top:0,
@@ -1134,11 +1432,16 @@ function unlock(){
 
 function goTo(id){
 
-    document
-    .getElementById(id)
-    .scrollIntoView({
-        behavior:"smooth"
-    });
+    const section =
+    document.getElementById(id);
+
+    if(section){
+
+        section.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
 
 }
 
@@ -1147,7 +1450,13 @@ function goTo(id){
    CORAZONES
 ========================= */
 
+let heartsStarted = false;
+
 function createHearts(){
+
+    if(heartsStarted) return;
+
+    heartsStarted = true;
 
     setInterval(function(){
 
@@ -1171,10 +1480,136 @@ function createHearts(){
         document.body.appendChild(heart);
 
         setTimeout(function(){
+
             heart.remove();
+
         },13000);
 
     },1200);
+
+}
+
+
+/* =========================
+   FECHA DE DESBLOQUEO
+========================= */
+
+/*
+   IMPORTANTE:
+
+   Agosto es el mes 7 en JavaScript,
+   porque enero = 0.
+
+   Por eso:
+   new Date(2026, 7, 28)
+
+   significa:
+   28 de agosto de 2026.
+
+   La carta se desbloquea desde las
+   00:00:00 del 28 de agosto.
+*/
+
+const unlockDate =
+new Date(2026,7,28,0,0,0,0);
+
+
+/* =========================
+   CARTA
+========================= */
+
+function checkLetter(){
+
+    const now =
+    new Date();
+
+    const lockedLetter =
+    document.getElementById("lockedLetter");
+
+    const unlockedLetter =
+    document.getElementById("unlockedLetter");
+
+    /*
+       Si ya llegó el 28:
+       mostrar carta.
+
+       Si todavía no:
+       mostrar candado.
+    */
+
+    if(now >= unlockDate){
+
+        lockedLetter.classList.add("hidden");
+
+        unlockedLetter.classList.remove("hidden");
+
+        unlockedLetter.classList.add("special-day");
+
+    }else{
+
+        unlockedLetter.classList.add("hidden");
+
+        lockedLetter.classList.remove("hidden");
+
+        updateLockedMessage();
+
+    }
+
+}
+
+
+/* =========================
+   MENSAJE DE ESPERA
+========================= */
+
+function updateLockedMessage(){
+
+    const now =
+    new Date();
+
+    const difference =
+    unlockDate - now;
+
+    if(difference <= 0){
+
+        checkLetter();
+
+        return;
+
+    }
+
+    const days =
+    Math.floor(
+        difference /
+        (1000*60*60*24)
+    );
+
+    const hours =
+    Math.floor(
+        (difference /
+        (1000*60*60)) % 24
+    );
+
+    const minutes =
+    Math.floor(
+        (difference /
+        (1000*60)) % 60
+    );
+
+    const message =
+    document.getElementById("unlockMessage");
+
+    if(days > 0){
+
+        message.textContent =
+        `Faltan ${days} días, ${hours} horas y ${minutes} minutos... 🥺💙`;
+
+    }else{
+
+        message.textContent =
+        `Faltan ${hours} horas y ${minutes} minutos... 🥺💙`;
+
+    }
 
 }
 
@@ -1185,21 +1620,42 @@ function createHearts(){
 
 function updateCountdown(){
 
-    const target =
-    new Date("August 28, 2026 00:00:00").getTime();
-
     const now =
-    new Date().getTime();
+    new Date();
 
     const difference =
-    target-now;
+    unlockDate - now;
+
+    /*
+       Cuando llegue el 28:
+       el contador queda en 365 días,
+       0 horas, 0 minutos y 0 segundos.
+    */
 
     if(difference <= 0){
 
-        document.getElementById("days").textContent="365";
-        document.getElementById("hours").textContent="0";
-        document.getElementById("minutes").textContent="0";
-        document.getElementById("seconds").textContent="0";
+        document
+        .getElementById("days")
+        .textContent="365";
+
+        document
+        .getElementById("hours")
+        .textContent="0";
+
+        document
+        .getElementById("minutes")
+        .textContent="0";
+
+        document
+        .getElementById("seconds")
+        .textContent="0";
+
+        document
+        .getElementById("countdownText")
+        .innerHTML =
+        "Llegó el día. 💙<br>Feliz 28 de agosto, mi gordita. ✨";
+
+        checkLetter();
 
         return;
 
@@ -1207,41 +1663,71 @@ function updateCountdown(){
 
     const days =
     Math.floor(
-        difference/(1000*60*60*24)
+        difference /
+        (1000*60*60*24)
     );
 
     const hours =
     Math.floor(
-        (difference/(1000*60*60))%24
+        (difference /
+        (1000*60*60)) % 24
     );
 
     const minutes =
     Math.floor(
-        (difference/(1000*60))%60
+        (difference /
+        (1000*60)) % 60
     );
 
     const seconds =
     Math.floor(
-        (difference/1000)%60
+        (difference /
+        1000) % 60
     );
 
-    document.getElementById("days")
+    document
+    .getElementById("days")
     .textContent=days;
 
-    document.getElementById("hours")
+    document
+    .getElementById("hours")
     .textContent=hours;
 
-    document.getElementById("minutes")
+    document
+    .getElementById("minutes")
     .textContent=minutes;
 
-    document.getElementById("seconds")
+    document
+    .getElementById("seconds")
     .textContent=seconds;
 
 }
 
+
+/* =========================
+   INICIALIZACION
+========================= */
+
+checkLetter();
+
 updateCountdown();
 
-setInterval(updateCountdown,1000);
+
+/*
+   Actualizamos cada segundo.
+
+   Esto es importante porque si ella tiene
+   la página abierta durante la noche del 27
+   y llega el 28, la carta se desbloqueará
+   automáticamente sin tener que recargar.
+*/
+
+setInterval(function(){
+
+    updateCountdown();
+    updateLockedMessage();
+
+},1000);
 
 </script>
 
