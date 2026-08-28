@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#a9ddf5">
+<title>Para mi Gordita 💙</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Georgia,"Times New Roman",serif;
+    background:
+        linear-gradient(180deg,#dff7ff,#bdeaff,#dff8ff);
+    color:#245873;
+    overflow-x:hidden;
+}
+
+/* =========================
+   FONDO
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(255,255,255,.8),transparent 18%),
+        radial-gradient(circle at 85% 25%,rgba(255,255,255,.65),transparent 20%),
+        radial-gradient(circle at 40% 80%,rgba(255,255,255,.5),transparent 20%);
+    z-index:-2;
+}
+
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.star{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:white;
+    box-shadow:0 0 15px white;
+    animation:twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.25;
+        transform:scale(.7);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+.heart{
+    position:fixed;
+    bottom:-50px;
+    color:rgba(255,255,255,.8);
+    pointer-events:none;
+    animation:floatUp linear forwards;
+    z-index:100;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.8;
+    }
+
+    100%{
+        transform:translateY(-110vh) rotate(25deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+.hidden{
+    display:none!important;
+}
+
+.screen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+}
+
+.card{
+    width:min(650px,92vw);
+    padding:55px 40px;
+    text-align:center;
+    border-radius:35px;
+    background:rgba(255,255,255,.5);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:0 20px 70px rgba(44,135,180,.25);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+}
+
+.small{
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:clamp(40px,8vw,70px);
+    color:#2685b2;
+    text-shadow:0 0 20px white;
+    margin-bottom:20px;
+}
+
+.subtitle{
+    font-size:20px;
+    line-height:1.7;
+}
+
+.lock{
+    font-size:45px;
+    margin:25px 0 10px;
+}
+
+input{
+    width:min(350px,100%);
+    padding:15px 20px;
+    border-radius:30px;
+    border:2px solid white;
+    background:rgba(255,255,255,.75);
+    outline:none;
+    text-align:center;
+    font-size:16px;
+    color:#245873;
+}
+
+input:focus{
+    box-shadow:0 0 20px rgba(255,255,255,.9);
+}
+
+button{
+    border:none;
+    border-radius:30px;
+    padding:14px 28px;
+    margin-top:15px;
+    background:#62bce2;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 8px 25px rgba(43,139,183,.25);
+}
+
+button:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 12px 30px rgba(43,139,183,.35);
+}
+
+#error{
+    margin-top:12px;
+    min-height:20px;
+    color:#b85878;
+}
+
+/* =========================
+   PAGINA PRINCIPAL
+========================= */
+
+#mainPage{
+    animation:appear 1.2s ease;
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   MUSICA
+========================= */
+
+.music-player{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    z-index:200;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:14px 18px;
+
+    background:rgba(255,255,255,.78);
+    border:1px solid rgba(255,255,255,.9);
+    border-radius:25px;
+
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    box-shadow:0 10px 35px rgba(45,135,180,.2);
+
+    animation:musicAppear 1s ease;
+}
+
+.music-icon{
+    font-size:25px;
+}
+
+.music-info{
+    display:flex;
+    flex-direction:column;
+    min-width:130px;
+}
+
+.music-info strong{
+    color:#287fa8;
+    font-size:14px;
+}
+
+.music-info small{
+    color:#56839a;
+    margin-top:3px;
+}
+
+.music-player audio{
+    width:180px;
+    height:35px;
+}
+
+@keyframes musicAppear{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   NAV
+========================= */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:150;
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+
+    padding:14px;
+
+    background:rgba(220,247,255,.82);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(255,255,255,.7);
+}
+
+nav button{
+    margin:0;
+    padding:9px 16px;
+    font-size:14px;
+    background:rgba(255,255,255,.55);
+    color:#31799c;
+    box-shadow:none;
+}
+
+nav button:hover{
+    background:rgba(255,255,255,.9);
+}
+
+/* =========================
+   SECCIONES
+========================= */
+
+section{
+    min-height:90vh;
+    padding:90px 25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.section-content{
+    width:min(950px,95vw);
+    text-align:center;
+}
+
+.section-title{
+    font-size:clamp(32px,6vw,52px);
+    color:#287fa8;
+    margin-bottom:20px;
+    text-shadow:0 0 15px white;
+}
+
+.section-text{
+    max-width:750px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.9;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:92vh;
+}
+
+.hero-heart{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero h2{
+    font-size:clamp(40px,8vw,75px);
+    color:#2685b2;
+    margin-bottom:20px;
+    text-shadow:0 0 20px white;
+}
+
+.hero p{
+    font-size:21px;
+    line-height:1.8;
+}
+
+.signature{
+    margin-top:25px;
+    font-size:24px;
+    color:#347fa2;
+}
+
+/* =========================
+   HISTORIA
+========================= */
+
+.timeline{
+    margin:45px auto 0;
+    max-width:750px;
+    position:relative;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:rgba(74,164,204,.35);
+}
+
+.event{
+    width:50%;
+    padding:20px;
+    position:relative;
+}
+
+.event:nth-child(odd){
+    text-align:right;
+    left:0;
+}
+
+.event:nth-child(even){
+    left:50%;
+    text-align:left;
+}
+
+.event-box{
+    background:rgba(255,255,255,.55);
+    border:1px solid white;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(57,145,184,.12);
+}
+
+.event h3{
+    color:#287fa8;
+    margin-bottom:10px;
+}
+
+.event p{
+    line-height:1.7;
+}
+
+/* =========================
+   TARJETAS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-top:40px;
+}
+
+.love-card{
+    padding:30px 22px;
+    background:rgba(255,255,255,.55);
+    border:1px solid white;
+    border-radius:28px;
+    box-shadow:0 10px 30px rgba(53,145,184,.12);
+    transition:.3s;
+}
+
+.love-card:hover{
+    transform:translateY(-7px);
+}
+
+.love-card .icon{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.love-card h3{
+    color:#287fa8;
+    margin-bottom:12px;
+}
+
+.love-card p{
+    line-height:1.7;
+}
+
+/* =========================
+   TALENTOS
+========================= */
+
+.talents{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:35px;
+}
+
+.talent{
+    padding:12px 18px;
+    border-radius:30px;
+    background:rgba(255,255,255,.65);
+    border:1px solid white;
+    color:#287fa8;
+}
+
+/* =========================
+   FRASES
+========================= */
+
+.quote{
+    margin:20px auto;
+    max-width:700px;
+    padding:25px;
+    border-radius:25px;
+    background:rgba(255,255,255,.55);
+    border:1px solid white;
+    font-size:20px;
+    line-height:1.7;
+    box-shadow:0 10px 30px rgba(53,145,184,.08);
+}
+
+/* =========================
+   CARTA
+========================= */
+
+.letter{
+    max-width:800px;
+    margin:auto;
+    padding:45px;
+    text-align:left;
+
+    background:rgba(255,255,255,.65);
+
+    border-radius:30px;
+    border:1px solid white;
+
+    box-shadow:0 15px 45px rgba(51,143,182,.15);
+}
+
+.letter p{
+    font-size:18px;
+    line-height:2;
+    margin-bottom:20px;
+}
+
+/* CARTA ESPECIAL */
+
+.special-letter{
+    border:2px solid rgba(98,188,226,.45);
+    box-shadow:
+        0 20px 60px rgba(51,143,182,.2),
+        inset 0 0 30px rgba(255,255,255,.4);
+}
+
+.special-letter .date{
+    text-align:center;
+    color:#287fa8;
+    font-size:16px;
+    margin-bottom:30px;
+}
+
+.special-letter h3{
+    text-align:center;
+    color:#287fa8;
+    font-size:30px;
+    margin-bottom:30px;
+}
+
+/* =========================
+   CONTADOR
+========================= */
+
+.countdown{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin:40px 0;
+}
+
+.time{
+    min-width:110px;
+    padding:25px 15px;
+    border-radius:25px;
+    background:rgba(255,255,255,.6);
+    border:1px solid white;
+    box-shadow:0 10px 25px rgba(53,145,184,.1);
+}
+
+.time span{
+    display:block;
+    font-size:38px;
+    font-weight:bold;
+    color:#287fa8;
+}
+
+.time small{
+    font-size:13px;
+}
+
+.final-message{
+    font-size:23px;
+    line-height:1.8;
+}
+
+/* =========================
+   REVELACION 28
+========================= */
+
+.reveal{
+    margin-top:35px;
+    padding:35px 25px;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.75),
+            rgba(206,240,255,.7)
+        );
+
+    border:1px solid white;
+
+    box-shadow:
+        0 15px 45px rgba(51,143,182,.15);
+
+    animation:revealAppear 1.5s ease;
+}
+
+@keyframes revealAppear{
+    from{
+        opacity:0;
+        transform:scale(.92);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.reveal h3{
+    color:#287fa8;
+    font-size:clamp(28px,6vw,45px);
+    margin-bottom:20px;
+}
+
+.reveal p{
+    font-size:20px;
+    line-height:1.8;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    padding:60px 20px;
+    font-size:18px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:650px){
+
+    .card{
+        padding:40px 25px;
+    }
+
+    section{
+        padding:70px 18px;
+    }
+
+    .timeline::before{
+        display:none;
+    }
+
+    .event,
+    .event:nth-child(even),
+    .event:nth-child(odd){
+        width:100%;
+        left:0;
+        text-align:left;
+    }
+
+    .letter{
+        padding:30px 22px;
+    }
+
+    .music-player{
+        left:15px;
+        right:15px;
+        bottom:15px;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .music-player audio{
+        width:100%;
+    }
+
+    nav{
+        padding:10px;
+    }
+
+    nav button{
+        font-size:12px;
+        padding:8px 12px;
+    }
+
+    .time{
+        min-width:85px;
+        padding:20px 10px;
+    }
+
+    .time span{
+        font-size:30px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     ESTRELLAS
+========================= -->
+
+<div class="stars">
+    <span class="star" style="top:8%;left:12%"></span>
+    <span class="star" style="top:17%;left:80%"></span>
+    <span class="star" style="top:31%;left:45%"></span>
+    <span class="star" style="top:48%;left:88%"></span>
+    <span class="star" style="top:66%;left:20%"></span>
+    <span class="star" style="top:78%;left:70%"></span>
+    <span class="star" style="top:91%;left:42%"></span>
+    <span class="star" style="top:23%;left:58%"></span>
+</div>
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<div id="loginScreen" class="screen">
+
+```
+<div class="card">
+
+    <div class="small">
+        Hay un lugar que hice solo para ti... ✨
+    </div>
+
+    <h1>Para mi Gordita</h1>
+
+    <div class="subtitle">
+        Pero primero tendrás que descubrir cómo entrar.
+        <br><br>
+        <i>6 días sin ti y mira lo que provocaste...</i> 😭💙
+    </div>
+
+    <div class="lock">🔐</div>
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Nuestra contraseña..."
+        autocomplete="off"
+    >
+
+    <br>
+
+    <button onclick="unlock()">
+        Entrar, mi gordita ♡
+    </button>
+
+    <div id="error"></div>
+
+</div>
+```
+
+</div>
+
+<!-- =========================
+     PAGINA PRINCIPAL
+========================= -->
+
+<div id="mainPage" class="hidden">
+
+```
+<!-- MUSICA -->
+
+<div class="music-player">
+
+    <div class="music-icon">
+        🎵
+    </div>
+
+    <div class="music-info">
+        <strong>Pero Te Conocí</strong>
+        <small>Reik · nuestra canción 💙</small>
+    </div>
+
+    <audio id="ourSong" controls>
+        <source
+            src="musica/Reik - Pero Te Conocí (Letra_Lyrics).mp3"
+            type="audio/mpeg"
+        >
+        Tu navegador no puede reproducir este audio.
+    </audio>
+
+</div>
+
+
+<!-- NAVEGACION -->
+
+<nav>
+
+    <button onclick="goTo('inicio')">
+        Inicio
+    </button>
+
+    <button onclick="goTo('historia')">
+        Nuestra historia
+    </button>
+
+    <button onclick="goTo('amor')">
+        Lo que amo de ti
+    </button>
+
+    <button onclick="goTo('talentos')">
+        Tu mundo
+    </button>
+
+    <button onclick="goTo('nosotros')">
+        Nosotros
+    </button>
+
+    <button onclick="goTo('carta')">
+        Carta
+    </button>
+
+    <button onclick="goTo('contador')">
+        365 días
+    </button>
+
+</nav>
+
+
+<!-- =========================
+     INICIO
+========================= -->
+
+<section id="inicio" class="hero">
+
+    <div class="section-content">
+
+        <div class="hero-heart">
+            ♡
+        </div>
+
+        <h2>
+            Para mi Gordita
+        </h2>
+
+        <p>
+            De tu niña. 💙
+            <br><br>
+            Hice este pequeño lugar para ti porque,
+            sinceramente, no sabía cómo meter todo
+            lo que siento por ti en una sola carta.
+        </p>
+
+        <div class="signature">
+            Te amo, cosita.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HISTORIA
+========================= -->
+
+<section id="historia">
+
+    <div class="section-content">
+
+        <h2 class="section-title">
+            Cómo empezó todo
+        </h2>
+
+        <p class="section-text">
+
+            De la manera más estúpida posible.
+            A ella le hackearon el Instagram y yo
+            le escribí sobre eso.
+            Y mira todo lo que terminó pasando.
+
+        </p>
+
+        <div class="timeline">
+
+            <div class="event">
+
+                <div class="event-box">
+
+                    <h3>
+                        04 · 02 · 2025 📱
+                    </h3>
+
+                    <p>
+                        El primer mensaje.
+                        Le hackearon su Instagram
+                        y terminé escribiéndole.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="event">
+
+                <div class="event-box">
+
+                    <h3>
+                        28 · 02 · 2025 💃
+                    </h3>
+
+                    <p>
+                        La primera vez que nos vimos
+                        en una gala de comparsas.
+
+                        Y lo primero que me dijiste fue:
+
+                        <br><br>
+
+                        <strong>
+                            “Tú sí eres chiquita.” 😭
+                        </strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="event">
+
+                <div class="event-box">
+
+                    <h3>
+                        28 · 08 · 2025 💙
+                    </h3>
+
+                    <p>
+                        Tal vez no te conocí ese día,
+                        pero sí lo veo como el principio
+                        de este amor tan bonito que tenemos.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="event">
+
+                <div class="event-box">
+
+                    <h3>
+                        28 · 08 · 2026 ✨
+                    </h3>
+
+                    <p>
+                        ¿Adivinaaaaa?
+                        <br>
+                        No te voy a decir nadita. 👀
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LO QUE AMO
+========================= -->
+
+<section id="amor">
+
+    <div class="section-content">
+
+        <h2 class="section-title">
+            Cosas que amo de ti 💙
+        </h2>
+
+        <div class="cards">
+
+            <div class="love-card">
+
+                <div class="icon">
+                    🫶
+                </div>
+
+                <h3>
+                    Tu empatía
+                </h3>
+
+                <p>
+                    La manera en la que puedes entender
+                    lo que siento incluso cuando no sé
+                    cómo explicarlo.
+                </p>
+
+            </div>
+
+
+            <div class="love-card">
+
+                <div class="icon">
+                    👂
+                </div>
+
+                <h3>
+                    Cómo escuchas
+                </h3>
+
+                <p>
+                    Gracias por escucharme siempre
+                    y hacerme sentir que mis palabras importan.
+                </p>
+
+            </div>
+
+
+            <div class="love-card">
+
+                <div class="icon">
+                    💙
+                </div>
+
+                <h3>
+                    Tu madurez
+                </h3>
+
+                <p>
+                    La manera en la que piensas,
+                    hablas y afrontas las cosas.
+                </p>
+
+            </div>
+
+
+            <div class="love-card">
+
+                <div class="icon">
+                    ✨
+                </div>
+
+                <h3>
+                    Tu forma de ser
+                </h3>
+
+                <p>
+                    Tu manera única de ser tú.
+                    No cambiaría eso por nada.
+                </p>
+
+            </div>
+
+
+            <div class="love-card">
+
+                <div class="icon">
+                    🫂
+                </div>
+
+                <h3>
+                    Que me escoges
+                </h3>
+
+                <p>
+                    Todos los días me demuestras
+                    que me escoges sobre todo lo demás.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="quote">
+
+            “Gracias por demostrarme
+            que no soy difícil de querer.”
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TALENTOS
+========================= -->
+
+<section id="talentos">
+
+    <div class="section-content">
+
+        <h2 class="section-title">
+            Las mil versiones de mi Gordita 🎸⚽💃
+        </h2>
+
+        <p class="section-text">
+
+            Delegada, guitarrista, actriz, cantante,
+            coreógrafa, bailarina, futbolista,
+            debatiente, ondina, servidora...
+
+            <br><br>
+
+            Y obviamente...
+
+            <br><br>
+
+            <strong style="font-size:25px">
+                mi pájara favoritaaa. 🐦💙
+            </strong>
+
+            <br><br>
+
+            Pero creo que ya hace falta agregarle
+            una más a tu lista:
+
+            <br><br>
+
+            <strong style="font-size:28px;color:#287fa8">
+                Mi bella princesita. 👑
+            </strong>
+
+        </p>
+
+
+        <div class="talents">
+
+            <div class="talent">
+                ⚽ Fútbol
+            </div>
+
+            <div class="talent">
+                💃 Baile urbano
+            </div>
+
+            <div class="talent">
+                🎸 Guitarra
+            </div>
+
+            <div class="talent">
+                🎭 Actuación
+            </div>
+
+            <div class="talent">
+                🎤 Canto
+            </div>
+
+            <div class="talent">
+                🎙️ Debate
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     NOSOTRAS
+========================= -->
+
+<section id="nosotros">
+
+    <div class="section-content">
+
+        <h2 class="section-title">
+            Cosas de nosotras 😂💙
+        </h2>
+
+        <div class="quote">
+            “Mira qué bonito está el cielo hoy,
+            babosa.” 🌌
+        </div>
+
+        <div class="quote">
+            “Cállese, anciana.” 👵
+        </div>
+
+        <div class="quote">
+            “¡Poltate biennnnn!” 😭
+        </div>
+
+        <div class="quote">
+            “Bella durmiente, despierta que se te
+            va a acabar el cuento de tanto dormir.” 😴
+        </div>
+
+        <div class="quote">
+            “¿Y la otra?” 👀
+        </div>
+
+        <div class="quote">
+            “Mini CR7.” ⚽
+        </div>
+
+        <div class="quote">
+
+            <strong>
+                El día que Tima descubrió demasiado:
+            </strong>
+
+            <br><br>
+
+            Digamos que vio unas caricias entre nosotras
+            que quizá eran un poquito más cariñosas
+            de lo normal...
+
+            <br><br>
+
+            Su cara pasó literalmente por todos
+            los colores existentes. 😭
+
+        </div>
+
+        <div class="quote">
+
+            Y sí, también amo tirarte hate
+            y hacerte bullying. 💙
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CARTA
+========================= -->
+
+<section id="carta">
+
+    <div class="section-content">
+
+        <h2 class="section-title">
+            Para ti, mi vida 💌
+        </h2>
+
+        <div class="letter">
+
+            <p>
+                Cosita, simplemente te amo, y de verdad
+                encontraré la manera de verte más seguido,
+                ir a tus partidos y simplemente mostrarte más
+                lo que siento por ti.
+            </p>
+
+            <p>
+                Tengo unas ganas de verte muy grandes,
+                de verdad te amo.
+            </p>
+
+            <p>
+                Perdón por no poder hacer más,
+                pero te amo y mucho.
+            </p>
+
+            <p style="text-align:center">
+                💙 Tu niña.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTADOR / 28 DE AGOSTO
+========================= -->
+
+<section id="contador">
+
+    <div class="section-content">
+
+        <h2 class="section-title">
+            365 días de nuestra historia 💙
+        </h2>
+
+        <p class="section-text" id="countdownIntro">
+            ¿Adivinaaaaa?
+            <br>
+            No te diré nadita.
+        </p>
+
+
+        <div class="countdown" id="countdown">
+
+            <div class="time">
+                <span id="days">0</span>
+                <small>DÍAS</small>
+            </div>
+
+            <div class="time">
+                <span id="hours">0</span>
+                <small>HORAS</small>
+            </div>
+
+            <div class="time">
+                <span id="minutes">0</span>
+                <small>MINUTOS</small>
+            </div>
+
+            <div class="time">
+                <span id="seconds">0</span>
+                <small>SEGUNDOS</small>
+            </div>
+
+        </div>
+
+
+        <!--
+            ESTA REVELACION APARECE AUTOMATICAMENTE
+            DESPUES DEL 28 DE AGOSTO DE 2026
+        -->
+
+        <div
+            id="specialReveal"
+            class="reveal hidden"
+        >
+
+            <h3>
+                Feliz 365 días, mi Gordita. 💙
+            </h3>
+
+            <p>
+                Llegó el día.
+                <br><br>
+                Después de todo este tiempo,
+                de todas nuestras conversaciones,
+                nuestras peleas, nuestras risas,
+                nuestros momentos bonitos y todos
+                esos pequeños recuerdos que solamente
+                nosotras entendemos...
+                <br><br>
+                seguimos aquí.
+                <br><br>
+                Y si pudiera volver al principio,
+                volvería a escribirte aquel primer mensaje
+                sin pensarlo dos veces.
+                <br><br>
+                Porque terminar encontrándote
+                fue de las cosas más bonitas
+                que me pudieron pasar.
+                <br><br>
+                Te amo muchísimo, cosita.
+                <br><br>
+                <strong>
+                    Feliz 365 días. 🫂💙
+                </strong>
+            </p>
+
+        </div>
+
+
+        <div
+            class="final-message"
+            id="beforeReveal"
+        >
+
+            <p>
+                <i>
+                    “Fue el tiempo que pasaste con tu rosa
+                    lo que la hizo tan importante.”
+                </i>
+            </p>
+
+            <br>
+
+            <small>
+                — Antoine de Saint-Exupéry
+            </small>
+
+            <br><br>
+
+            <p>
+                Creo que por eso eres tan importante
+                para mí. 💙
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        Hecho con mucho amor por tu niña. 💙
+    </p>
+
+    <p style="margin-top:12px">
+        Cuídate y pórtate biennnn.
+    </p>
+
+</footer>
+```
+
+</div>
+
+<script>
+
+/* =====================================================
+   CONTRASEÑA
+===================================================== */
+
+function unlock(){
+
+    const password =
+        document
+            .getElementById("password")
+            .value
+            .trim()
+            .toLowerCase();
+
+    const error =
+        document.getElementById("error");
+
+
+    if(password === "teamo"){
+
+        document
+            .getElementById("loginScreen")
+            .classList.add("hidden");
+
+        document
+            .getElementById("mainPage")
+            .classList.remove("hidden");
+
+        error.textContent = "";
+
+        createHearts();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+        /*
+         * La música NO se reproduce automáticamente,
+         * porque los navegadores suelen bloquear
+         * el autoplay con sonido.
+         */
+
+    }else{
+
+        error.textContent =
+            "Mmm... esa no es, mi gordita 👀💙";
+
+    }
+
+}
+
+
+/* =====================================================
+   ENTER EN LA CONTRASEÑA
+===================================================== */
+
+document
+    .getElementById("password")
+    .addEventListener("keydown", function(event){
+
+        if(event.key === "Enter"){
+            unlock();
+        }
+
+    });
+
+
+/* =====================================================
+   NAVEGACION
+===================================================== */
+
+function goTo(id){
+
+    const section =
+        document.getElementById(id);
+
+    if(!section) return;
+
+    section.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+/* =====================================================
+   CORAZONES
+===================================================== */
+
+let heartsStarted = false;
+
+function createHearts(){
+
+    if(heartsStarted) return;
+
+    heartsStarted = true;
+
+    setInterval(function(){
+
+        const heart =
+            document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.textContent =
+            Math.random() > .5
+                ? "♡"
+                : "♥";
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+        heart.style.fontSize =
+            (14 + Math.random() * 22) + "px";
+
+        heart.style.animationDuration =
+            (7 + Math.random() * 6) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(function(){
+
+            heart.remove();
+
+        },13000);
+
+    },1200);
+
+}
+
+
+/* =====================================================
+   CUENTA REGRESIVA
+===================================================== */
+
+function updateCountdown(){
+
+    /*
+     * Fecha objetivo:
+     * 28 de agosto de 2026 a las 00:00:00
+     *
+     * Se utiliza el horario local del dispositivo.
+     */
+
+    const target =
+        new Date(
+            "2026-08-28T00:00:00"
+        ).getTime();
+
+    const now =
+        new Date().getTime();
+
+    const difference =
+        target - now;
+
+
+    /*
+     * Cuando llega el 28:
+     * ocultamos el contador y mostramos
+     * automáticamente la sorpresa.
+     */
+
+    if(difference <= 0){
+
+        document
+            .getElementById("countdown")
+            .classList.add("hidden");
+
+        document
+            .getElementById("countdownIntro")
+            .innerHTML =
+                "Llegó el día que estabas esperando... 💙";
+
+
+        document
+            .getElementById("specialReveal")
+            .classList.remove("hidden");
+
+
+        document
+            .getElementById("beforeReveal")
+            .classList.add("hidden");
+
+        return;
+
+    }
+
+
+    const days =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (difference /
+            (1000 * 60 * 60)) % 24
+        );
+
+
+    const minutes =
+        Math.floor(
+            (difference /
+            (1000 * 60)) % 60
+        );
+
+
+    const seconds =
+        Math.floor(
+            (difference / 1000) % 60
+        );
+
+
+    document
+        .getElementById("days")
+        .textContent =
+        days;
+
+
+    document
+        .getElementById("hours")
+        .textContent =
+        hours;
+
+
+    document
+        .getElementById("minutes")
+        .textContent =
+        minutes;
+
+
+    document
+        .getElementById("seconds")
+        .textContent =
+        seconds;
+
+}
+
+
+/* =====================================================
+   INICIAR CONTADOR
+===================================================== */
+
+updateCountdown();
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+</script>
+
+</body>
+</html>
